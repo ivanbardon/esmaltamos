@@ -3,7 +3,6 @@ import React from 'react'
 export default function HeroSection() {
   return (
     <section className='py-4 bg-white text-black dark:bg-black dark:text-white'>
-      <h1 className="text-4xl font-bold text-center">Esmaltamos tu Bañera</h1>
       <p className="mt-4 text-lg text-center px-2">La solución más rápida y económica para reparar tu bañera.</p>
       <img
         src="baneraheader.webp"

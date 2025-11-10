@@ -67,7 +67,13 @@ export default function Trabajos() {
   return (
     <section className="py-16 md:py-24 bg-background text-foreground" onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
       <div className="container mx-auto">
-        <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6 text-center px-2">Servicios que ofrecemos</h2>
+        <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-2 text-center px-2">Servicios</h2>
+
+        {/* Controles del carrusel */}{/* Botones de Navegación */}
+        <div className="mt-8 flex justify-center items-center gap-30">
+          <button onClick={prevSlide} className="p-3 bg-card/50 hover:bg-card rounded-full transition-colors" aria-label="Trabajo anterior"><ChevronLeft className="h-8 w-8" /></button>
+          <button onClick={nextSlide} className="p-3 bg-card/50 hover:bg-card rounded-full transition-colors" aria-label="Siguiente trabajo"><ChevronRight className="h-8 w-8" /></button>
+        </div>
         
         {/* Contenedor del carrusel con overflow hidden */}
         <div className="overflow-hidden">
@@ -79,13 +85,7 @@ export default function Trabajos() {
               </div>
             ))}
           </div>
-        </div>
-
-        {/* Botones de Navegación */}
-        <div className="mt-8 flex justify-center items-center gap-4">
-          <button onClick={prevSlide} className="p-3 bg-card/50 hover:bg-card rounded-full transition-colors" aria-label="Trabajo anterior"><ChevronLeft className="h-8 w-8" /></button>
-          <button onClick={nextSlide} className="p-3 bg-card/50 hover:bg-card rounded-full transition-colors" aria-label="Siguiente trabajo"><ChevronRight className="h-8 w-8" /></button>
-        </div>
+        </div> 
       </div>
     </section>
   );

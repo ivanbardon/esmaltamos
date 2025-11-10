@@ -1,7 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Oranienbaum&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Oranienbaum&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 @import 'tailwindcss';
 
+@theme {
+  --font-montserrat: 'Montserrat', sans-serif;
+}
+body {
+  font-family: var(--font-montserrat);
+}
 @layer base {
     :root {
     --radius: 0.65rem;

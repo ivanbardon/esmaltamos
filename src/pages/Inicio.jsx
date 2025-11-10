@@ -4,7 +4,6 @@ import WhyChooseUs from '../components/WhyChooseUs';
 import Trabajos from '../components/Trabajos';
 import CallToAction from '../components/CallToAction';
 
-
 export default function Inicio() {
   return (
     <>
@@ -12,7 +11,6 @@ export default function Inicio() {
       <WhyChooseUs />
       <CallToAction />
       <Trabajos />
-      <CallToAction />
     </>
   );
 }

@@ -2,8 +2,8 @@ import React from 'react';
 import { Mail, Phone, MessageSquare } from 'lucide-react';
 
 // Datos de contacto consistentes con el resto de la web
-const email = 'info@reparatubanera.com';
-const phoneNumber = '+34666777888';
+const email = 'info@esmaltamostubañera.com';
+const phoneNumber = '+34615771841';
 const whatsappUrl = `https://wa.me/${phoneNumber.replace(/\+/g, '')}`;
 
 export default function Contacto() {

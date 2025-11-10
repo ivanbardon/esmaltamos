@@ -1,28 +1,38 @@
 import React from 'react';
-import { Mail, Phone, MessageSquare } from 'lucide-react';
+import { Mail, Phone, MessageCircle } from 'lucide-react';
 
 const CallToAction = () => {
-  const email = 'info@reparatubanera.com';
-  const phoneNumber = '+34666777888';
+  const email = 'info@esmaltamostubañera.com';
+  const phoneNumber = '+34615771841';
   const whatsappUrl = `https://wa.me/${phoneNumber.replace(/\+/g, '')}`;
 
-  const buttonStyle = "flex items-center justify-center gap-2 px-3 py-2 text-sm font-medium rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 bg-primary text-primary-foreground hover:bg-primary/90";
-
   return (
-    <div className="flex flex-col justify-end my-6 bg-white text-black dark:bg-black dark:text-white dark:border-white">
-      <h2 className='text-center py-2'>La botonera de contacto</h2>
-      <div className="flex flex-row justify-center gap-4 py-4">
-        <a href={`mailto:${email}`} className={buttonStyle} aria-label='Enviar correo'>
-          <Mail size={18} />
-          <span className="hidden sm:inline">Email</span>
+    <div className=" bg-white text-black dark:bg-black dark:text-white px-2">
+      <h2 className='text-4xl text-center font-medium'>Contacta con Nosotros</h2>
+      <p className="text-left mb-8 text-lg text-muted-foreground px-4 py-6">
+        ¿Tienes alguna pregunta o quieres solicitar un presupuesto? Utiliza nuestros canales de contacto directo. Te responderemos en la mayor brevedad.
+      </p>
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-4xl mx-auto px-4">
+        <a href={`mailto:${email}`} className="flex items-center gap-4 p-4 border border-border rounded-md hover:bg-card transition-colors justify-center sm:justify-start">
+          <Mail className="w-6 h-6 text-primary" />
+          <div className='text-left'>
+            <p className="font-semibold">Email</p>
+            <p className="text-muted-foreground hidden sm:block">{email}</p>
+          </div>
         </a>
-        <a href={`tel:${phoneNumber}`} className={buttonStyle} aria-label='Llamar por teléfono'>
-          <Phone size={18} />
-          <span className="hidden sm:inline">Llamar</span>
+        <a href={`tel:${phoneNumber}`} className="flex items-center gap-4 p-4 border border-border rounded-md hover:bg-card transition-colors justify-center sm:justify-start">
+          <Phone className="w-6 h-6 text-primary" />
+          <div className='text-left'>
+            <p className="font-semibold">Teléfono</p>
+            <p className="text-muted-foreground hidden sm:block">{phoneNumber}</p>
+          </div>
         </a>
-        <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className={buttonStyle} aria-label='Contactar por WhatsApp'>
-          <MessageSquare size={18} />
-          <span className="hidden sm:inline">WhatsApp</span>
+        <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 p-4 border border-border rounded-md hover:bg-card transition-colors justify-center sm:justify-start">
+          <MessageCircle className="w-6 h-6 text-primary" />
+          <div className='text-left'>
+            <p className="font-semibold">WhatsApp</p>
+            <p className="text-muted-foreground hidden sm:block">Envíanos un mensaje</p>
+          </div>
         </a>
       </div>
     </div>

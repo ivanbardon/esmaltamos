@@ -15,7 +15,7 @@ export default {
     },
     extend: {
       fontFamily: {
-        oranienbaum: ['Oranienbaum', 'serif'],
+        sans: ['Montserrat', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",

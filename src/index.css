@@ -26,6 +26,10 @@
   --color-border: hsl(0 0% 89.8%);
   --color-input: hsl(0 0% 89.8%);
   --color-ring: hsl(0 0% 3.9%);
+
+  /* Top gradient color (subtle lilac) */
+  /* Keep it soft and barely noticeable */
+  --gradient-top-color: hsl(270 90% 96% / 0.30);
 }
 
 /* Dark overrides */
@@ -49,8 +53,17 @@
   --color-border: hsl(0 0% 14.9%);
   --color-input: hsl(0 0% 14.9%);
   --color-ring: hsl(0 0% 83.1%);
+
+  /* Dark mode gradient (subtle lilac) */
+  --gradient-top-color: hsl(270 60% 28% / 0.28);
 }
 
+html, body { min-height: 100%; }
 body {
   font-family: var(--font-montserrat);
+  background-color: var(--color-background);
+  /* Subtle top gradient that fades by ~35-40% of the viewport height */
+  background-image: linear-gradient(to bottom, var(--gradient-top-color) 0%, transparent 40%);
+  background-repeat: no-repeat;
+  background-size: 100% 320px;
 }

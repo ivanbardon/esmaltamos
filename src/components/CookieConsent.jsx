@@ -25,7 +25,7 @@ const CookieConsent = () => {
   }
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 p-4 flex flex-col md:flex-row justify-between items-center z-50 border-t bg-white text-black dark:bg-black dark:text-white dark:border-white">
+    <div className="fixed bottom-0 left-0 right-0 p-4 flex flex-col md:flex-row justify-between items-center z-50 border-t bg-background text-foreground border-border">
       <div className="text-sm mb-4 md:mb-0 md:mr-4 text-center md:text-left">
         <p>No utilizamos tus cookies para Nada, ni las almacenamos ni se las vendemos a nadie. Tus Cookies son tuyas.</p>
         <p className="font-bold text-center">😉</p>
@@ -39,7 +39,7 @@ const CookieConsent = () => {
         </button>
         <button
           onClick={handleDecline}
-          className="bg-background hover:bg-accent hover:text-accent-foreground border font-bold py-2 px-4 rounded"
+          className="bg-background hover:bg-accent hover:text-accent-foreground border border-border font-bold py-2 px-4 rounded"
         >
           Rechazar
         </button>

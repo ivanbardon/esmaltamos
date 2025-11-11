@@ -1,12 +1,16 @@
 import { useState, useEffect } from "react";
 import Logo from "./Logo";
-import { Menu, X, AppWindowMac, ChevronRight, ChevronLeft, TextAlignJustify, TextAlignStart, } from 'lucide-react';
+import { ChevronLeft, TextAlignStart } from 'lucide-react';
+
+// Usa el BASE_URL que inyecta Vite para evitar hardcodear "/esmaltamos/".
+// En desarrollo BASE_URL será "/" y en producción "/esmaltamos/" según tu vite.config.
+const base = import.meta.env.BASE_URL;
 
 const navLinks = [
-  { href: "/esmaltamos/", text: "Inicio" },
-  { href: "/esmaltamos/trabajos.html", text: "Trabajos" },
-  { href: "/esmaltamos/servicios.html", text: "Servicios" },
-  { href: "/esmaltamos/contacto.html", text: "Contacto" },
+  { href: base, text: "Inicio" },
+  { href: `${base}trabajos.html`, text: "Trabajos" },
+  { href: `${base}servicios.html`, text: "Servicios" },
+  { href: `${base}contacto.html`, text: "Contacto" },
 ];
 
 export default function NavBar() {
@@ -34,16 +38,16 @@ export default function NavBar() {
     const baseClasses = "transition-colors duration-300 tracking-wide font-medium";
     // Comprueba si la ruta actual es la misma que la del enlace.
     // El caso de "Inicio" es especial porque puede ser "/" o "/index.html".
-    const isActive = currentPath === href || (href === "/esmaltamos/" && currentPath.endsWith("/index.html"));
+    const isActive = currentPath === href || (href === base && currentPath.endsWith("/index.html"));
     return isActive ? `${baseClasses} text-primary` : `${baseClasses} text-muted-foreground hover:text-foreground`;
   };
 
   return (
     <>
-      <nav className="fixed top-0 left-0 w-full bg-background/80 backdrop-blur-sm text-foreground shadow-md z-50 font-s">
+      <nav className="fixed top-0 left-0 w-full bg-background/80 backdrop-blur-sm text-foreground shadow-md z-50">
         <div className="container mx-auto flex items-center justify-between p-4 h-20">
           {/* Botón de menú para móvil */}
-          <button onClick={() => setIsMenuOpen(true)} className="md:hidden p-2" aria-label="Abrir menú">
+          <button onClick={() => setIsMenuOpen(true)} className="md:hidden p-2" aria-label="Abrir menú" aria-expanded={isMenuOpen} aria-controls="mobile-drawer">
             <TextAlignStart className="h-6 w-6" />
           </button>
           <h1 className="text-2xl text-center font-medium flex-1">Esmaltamos tu Bañera</h1>
@@ -64,13 +68,15 @@ export default function NavBar() {
       <div onClick={() => setIsMenuOpen(false)} className={`fixed inset-0 bg-black/50 z-50 transition-opacity duration-300 ${isMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`} />
 
       {/* Menú lateral (Drawer) */}
-      <div className={`fixed top-0 left-0 h-full w-90 bg-white text-black dark:bg-black dark:text-white dark:border-white shadow-xl z-50 transform transition-transform duration-300 ease-in-out ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
-        <div className="flex justify-between items-center p-4 border-b border-border h-20">
-          <Logo className="h-12 w-auto" />
-          <span className="text-2xl font-medium">EsmaltamostuBañera</span>
-          <button onClick={() => setIsMenuOpen(false)} className="p-2" aria-label="Cerrar menú">
+      <div id="mobile-drawer" role="dialog" aria-modal="true" className={`fixed top-0 left-0 h-full w-90 bg-background text-foreground border border-border shadow-xl z-50 transform transition-transform duration-300 ease-in-out ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+        <div className="relative p-6 border-b border-border">
+          <button onClick={() => setIsMenuOpen(false)} className="p-2 absolute top-4 right-4" aria-label="Cerrar menú">
             <ChevronLeft className="h-6 w-6" />
           </button>
+          <div className="flex flex-col items-center justify-center gap-3 pt-2 pb-2">
+            <Logo className="h-24 w-auto" />
+            <span className="text-2xl font-semibold tracking-wide text-card-foreground">EsmaltamostuBañera</span>
+          </div>
         </div>
         <ul className="flex flex-col p-4 space-y-2">
           {navLinks.map((link) => (

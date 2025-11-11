@@ -30,7 +30,7 @@ const trabajosData = [
 
 export default function TodosTrabajos() {
   return (
-    <div className="container mx-auto px-4 py-10 bg-white text-black dark:bg-black dark:text-white dark:border-white">
+    <div className="container mx-auto px-4 py-10 bg-background text-foreground">
       <div className="text-center mb-12">
         <h1 className="text-4xl">Nuestra Galería de Trabajos</h1>
         <p className="text-lg mt-4">Explora algunos de los proyectos que hemos realizado, transformando baños con resultados duraderos y de alta calidad.</p>

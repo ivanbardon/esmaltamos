@@ -54,7 +54,7 @@ export default function Servicios() {
           {servicesData.map(({ id, Icon, title, description, advantages }) => (
             <div key={id} className="p-6 md:p-8 bg-card rounded-xl">
               <div className="flex flex-col items-start gap-4 md:flex-row md:items-center">
-                <Icon className="h-10 w-10 text-primary flex-shrink-0" />
+                {Icon && <Icon className="h-10 w-10 text-primary flex-shrink-0" />}
                 <h2 className="text-2xl md:text-3xl font-bold">{title}</h2>
               </div>
               <p className="mt-4 text-muted-foreground">{description}</p>

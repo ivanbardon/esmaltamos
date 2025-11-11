@@ -6,7 +6,7 @@ export default function Layout({ children }) {
   return (
     <>
       <NavBar />
-      <main className='mt-15 bg-white text-black dark:bg-black dark:text-white dark:border-white'>
+      <main className='mt-15 bg-background text-foreground'>
         {children}
       </main>
       <Footer />

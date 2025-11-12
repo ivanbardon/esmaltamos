@@ -116,14 +116,14 @@ export default function NavBar() {
             title={`Tema: ${mode}`}
           >
             {isDark ? (
-              <Moon className="h-5 w-5 text-muted-foreground" />
-            ) : (
               <Sun className="h-5 w-5 text-muted-foreground" />
+            ) : (
+              <Moon className="h-5 w-5 text-muted-foreground" />
             )}
           </button>
           <div className="flex flex-col items-center justify-center gap-3 pt-2 pb-2">
             <Logo className="h-24 w-auto" />
-            <span className="text-2xl font-semibold tracking-wide text-card-foreground">EsmaltamostuBañera</span>
+            <span className="text-2xl font-semibold tracking-wide text-card-foreground">Esmaltamos tu Bañera</span>
           </div>
         </div>
         <ul className="flex flex-col p-4 space-y-2">

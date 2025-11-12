@@ -6,12 +6,12 @@ const services = [
   {
     title: 'Esmaltado Completo',
     description: 'Renovación total con acabado resistente y brillante.',
-    img: 'baneraheader.webp',
+    img: 'banera3a.jpeg',
   },
   {
-    title: 'Reparación de Grietas',
+    title: 'Reparación de Oxido y Esmaltado',
     description: 'Sellado y restauración de fisuras y golpes.',
-    img: 'plato1e.jpg',
+    img: 'banera2.jpeg',
   },
   {
     title: 'Cambio de Color',
@@ -19,9 +19,9 @@ const services = [
     img: 'baneraazul.jpeg',
   },
   {
-    title: 'Reparación Parcial',
+    title: 'Renovacion de Bañeras y Platos de Ducha',
     description: 'Intervenciones rápidas sin obras mayores.',
-    img: 'agu1c.jpg',
+    img: 'banera1.jpeg',
   },
 ];
 
@@ -131,8 +131,8 @@ export default function OurServicesSection() {
                       loading="lazy"
                       decoding="async"
                     />
-                    {/* Overlay sutil */}
-                    <div className="absolute inset-0 bg-black/10" />
+                    {/* Overlay sutil adaptado al tema */}
+                    <div className="absolute inset-0 bg-foreground/5" />
                   </div>
                   <div className="p-4 text-center">
                     <h3 className="text-xl font-semibold text-card-foreground">{s.title}</h3>

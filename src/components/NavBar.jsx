@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Logo from "./Logo";
-import { ChevronLeft, TextAlignStart } from 'lucide-react';
+import { ChevronLeft, TextAlignStart, Sun, Moon } from 'lucide-react';
 
 // Usa el BASE_URL que inyecta Vite para evitar hardcodear "/esmaltamos/".
 // En desarrollo BASE_URL será "/" y en producción "/esmaltamos/" según tu vite.config.
@@ -16,6 +16,8 @@ const navLinks = [
 export default function NavBar() {
   const [currentPath, setCurrentPath] = useState(window.location.pathname);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isDark, setIsDark] = useState(() => document.documentElement.classList.contains('dark'));
+  const [mode, setMode] = useState(() => (window.__getTheme ? window.__getTheme() : 'system'));
 
   useEffect(() => {
     const handleLocationChange = () => {
@@ -31,7 +33,21 @@ export default function NavBar() {
 
     // Escucha los cambios en el historial del navegador (botones atrás/adelante)
     window.addEventListener("popstate", handleLocationChange);
-    return () => window.removeEventListener("popstate", handleLocationChange);
+
+    // Sync icon with system theme changes
+    const mql = window.matchMedia('(prefers-color-scheme: dark)');
+    const onScheme = () => {
+      setIsDark(document.documentElement.classList.contains('dark'));
+      if ((window.__getTheme ? window.__getTheme() : 'system') === 'system') setMode('system');
+    };
+    if (mql.addEventListener) mql.addEventListener('change', onScheme);
+    else if (mql.addListener) mql.addListener(onScheme);
+
+    return () => {
+      window.removeEventListener("popstate", handleLocationChange);
+      if (mql.removeEventListener) mql.removeEventListener('change', onScheme);
+      else if (mql.removeListener) mql.removeListener(onScheme);
+    };
   }, [isMenuOpen]);
 
   const getLinkClass = (href) => {
@@ -40,6 +56,23 @@ export default function NavBar() {
     // El caso de "Inicio" es especial porque puede ser "/" o "/index.html".
     const isActive = currentPath === href || (href === base && currentPath.endsWith("/index.html"));
     return isActive ? `${baseClasses} text-primary` : `${baseClasses} text-muted-foreground hover:text-foreground`;
+  };
+  const toggleTheme = () => {
+    const next = mode === 'light' ? 'dark' : mode === 'dark' ? 'system' : 'light';
+    setMode(next);
+    if (window.__setTheme) {
+      window.__setTheme(next);
+    } else {
+      // Fallback simple (sin animación)
+      if (next === 'dark') document.documentElement.classList.add('dark');
+      else if (next === 'light') document.documentElement.classList.remove('dark');
+      else {
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        document.documentElement.classList.toggle('dark', prefersDark);
+      }
+    }
+    // Actualizar estado tras el set (ligero delay para asegurarnos de transición)
+    setTimeout(() => setIsDark(document.documentElement.classList.contains('dark')), 0);
   };
 
   return (
@@ -65,13 +98,27 @@ export default function NavBar() {
       </nav>
 
       {/* Overlay */}
-      <div onClick={() => setIsMenuOpen(false)} className={`fixed inset-0 bg-black/50 z-50 transition-opacity duration-300 ${isMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`} />
+  <div onClick={() => setIsMenuOpen(false)} className={`fixed inset-0 bg-foreground/50 z-50 transition-opacity duration-300 ${isMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`} />
 
       {/* Menú lateral (Drawer) */}
       <div id="mobile-drawer" role="dialog" aria-modal="true" className={`fixed top-0 left-0 h-full w-90 bg-background text-foreground border border-border shadow-xl z-50 transform transition-transform duration-300 ease-in-out ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
         <div className="relative p-6 border-b border-border">
           <button onClick={() => setIsMenuOpen(false)} className="p-2 absolute top-4 right-4" aria-label="Cerrar menú">
-            <ChevronLeft className="h-6 w-6" />
+            <ChevronLeft className="h-6 w-6 text-muted-foreground" />
+          </button>
+          {/* Icono tema actual (clicable para cambiar) */}
+          <button
+            type="button"
+            onClick={toggleTheme}
+            className="absolute top-4 left-4 p-2 rounded-md hover:bg-accent"
+            aria-label="Cambiar tema"
+            title={`Tema: ${mode}`}
+          >
+            {isDark ? (
+              <Moon className="h-5 w-5 text-muted-foreground" />
+            ) : (
+              <Sun className="h-5 w-5 text-muted-foreground" />
+            )}
           </button>
           <div className="flex flex-col items-center justify-center gap-3 pt-2 pb-2">
             <Logo className="h-24 w-auto" />
@@ -91,3 +138,4 @@ export default function NavBar() {
     </>
   );
 }
+ 

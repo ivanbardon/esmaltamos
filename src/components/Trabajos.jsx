@@ -7,20 +7,32 @@ const trabajosData = [
   {
     id: 1,
     title: "Esmaltado con cambio de color",
-    images: ["plato1e.jpg", "plato1a.jpg", "plato1b.jpg", "plato1c.jpg"],
+    images: ["baneraazul.jpeg"],
     description: "Proceso de reparación de grietas y esmaltado completo para devolverle su aspecto original y durabilidad."
   },
   {
     id: 2,
     title: "Arreglos de oxido y esmaltado",
-    images: ["banera2b.jpg", "banera1a.jpg", "banera1b.jpg", "banera2a.jpg"],
-    description: "Esmaltado profesional para bañeras con desgaste, recuperando el brillo y la suavidad de la superficie."
+    images: ["banera2.jpeg"],
+    description: "Aplicación de esmalte de alta resistencia para un acabado como nuevo, eliminando manchas y óxido."
   },
   {
     id: 3,
-    title: "Reparacion y renovación de sanitarios",
-    images: ["banera1b.jpg", "baneraazul.jpeg", "banera1.jpeg", "banera1a.jpg"],
-    description: "Aplicación de esmalte de alta resistencia para un acabado como nuevo, eliminando manchas y óxido."
+    title: "Reparacion y renovación de plato de ducha",
+    images: ["plato1.jpeg"],
+    description: "Esmaltado profesional para platos de ducha con desgaste, recuperando el brillo y la suavidad de la superficie."
+  },
+  {
+    id: 4,
+    title: "Reparación de grietas en bañera",
+    images: ["banera1.jpeg"],
+    description: "Reparación de fisuras y aplicación de esmalte para restaurar la integridad y apariencia de la bañera."
+  },
+  {
+    id: 5,
+    title: "Esmaltado de bañera",
+    images: ["banera3a.jpeg", "banera3b.jpeg"],
+    description: "Esmaltado completo de bañeras para restaurar su apariencia y protegerlas de futuros daños."
   }
 ];
 

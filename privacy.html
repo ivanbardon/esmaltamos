@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Privacidad y Cookies</title>
+    <meta name="description" content="Información sobre privacidad y uso de cookies: no usamos cookies de seguimiento ni publicidad." />
+    <script>
+      (function(){
+        try{
+          var root = document.documentElement;
+          var mql=window.matchMedia('(prefers-color-scheme: dark)');
+          function withTransition(run){
+            root.classList.add('theme-transition');
+            try{ run(); } finally { setTimeout(function(){ root.classList.remove('theme-transition'); }, 400); }
+          }
+          function apply(mode, transient){
+            var isDark = mode === 'dark' ? true : mode === 'light' ? false : mql.matches;
+            var action = function(){ root.classList.toggle('dark', isDark); };
+            transient ? withTransition(action) : action();
+          }
+          var stored = localStorage.getItem('theme') || 'system';
+          apply(stored, false);
+          function onChange(){
+            var current = localStorage.getItem('theme') || 'system';
+            if(current === 'system') apply('system', true);
+          }
+          if(mql.addEventListener) mql.addEventListener('change', onChange);
+          else if(mql.addListener) mql.addListener(onChange);
+          window.__setTheme = function(mode){
+            var val = (mode === 'dark' || mode === 'light') ? mode : 'system';
+            localStorage.setItem('theme', val);
+            apply(val, true);
+          };
+          window.__getTheme = function(){
+            return localStorage.getItem('theme') || 'system';
+          };
+        }catch(e){}
+      })();
+    </script>
+  </head>
+  <body class="bg-background text-foreground">
+    <div id="root"></div>
+    <script type="module" src="/src/main-privacy.jsx"></script>
+  </body>
+</html>

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Logo from "./Logo";
+import CallToAction from "./CallToAction";
 import { ChevronLeft, TextAlignStart, Sun, Moon } from 'lucide-react';
 
 // Usa el BASE_URL que inyecta Vite para evitar hardcodear "/esmaltamos/".
@@ -134,6 +135,9 @@ export default function NavBar() {
             </li>
           ))}
         </ul>
+        <div className="px-4 pb-8">
+          <CallToAction compact showIntro={false} />
+        </div>
       </div>
     </>
   );

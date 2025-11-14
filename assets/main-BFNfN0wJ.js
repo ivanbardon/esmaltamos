@@ -1,4 +1,4 @@
-import{j as e,c,r as s,C as v,a as N,L as y,b as k}from"./Layout-DaHKQH7g.js";function w(){return e.jsxs("section",{className:"py-4 bg-transparent text-foreground",children:[e.jsx("p",{className:"mt-4 text-lg text-center px-2",children:"La solución más rápida y económica para reparar tu bañera."}),e.jsx("img",{src:"baneraheader.webp",alt:"Esmaltado de bañera",className:"mt-6 mx-auto w-full max-w-4xl"})]})}/**
+import{j as e,c,r as s,C as v,a as N,L as y,b as k}from"./Layout-Dbnw20zH.js";function w(){return e.jsxs("section",{className:"py-4 bg-transparent text-foreground",children:[e.jsx("p",{className:"mt-4 text-lg text-center px-2",children:"La solución más rápida y económica para reparar tu bañera."}),e.jsx("img",{src:"baneraheader.webp",alt:"Esmaltado de bañera",className:"mt-6 mx-auto w-full max-w-4xl"})]})}/**
  * @license lucide-react v0.548.0 - ISC
  *
  * This source code is licensed under the ISC license.

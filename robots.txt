@@ -1,0 +1,13 @@
+# robots.txt para esmaltamostubañera.com
+User-agent: *
+Allow: /
+
+# Permitir rastreo de todas las páginas principales
+Allow: /index.html
+Allow: /trabajos.html
+Allow: /servicios.html
+Allow: /contacto.html
+Allow: /privacy.html
+
+# Sitemap
+Sitemap: https://esmaltamos.github.io/esmaltamos/sitemap.xml

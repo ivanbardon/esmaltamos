@@ -17,8 +17,10 @@ const navLinks = [
 export default function NavBar() {
   const [currentPath, setCurrentPath] = useState(window.location.pathname);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isDark, setIsDark] = useState(() => document.documentElement.classList.contains('dark'));
+  // Modo actual (light | dark | system)
   const [mode, setMode] = useState(() => (window.__getTheme ? window.__getTheme() : 'system'));
+  // Estado de tema efectivo aplicado (clase .dark presente o no)
+  const [isDark, setIsDark] = useState(() => document.documentElement.classList.contains('dark'));
 
   useEffect(() => {
     const handleLocationChange = () => {
@@ -38,7 +40,9 @@ export default function NavBar() {
     // Sync icon with system theme changes
     const mql = window.matchMedia('(prefers-color-scheme: dark)');
     const onScheme = () => {
+      // Actualiza el estado efectivo según la clase en <html>
       setIsDark(document.documentElement.classList.contains('dark'));
+      // Si estamos en modo system reflejamos posibles cambios (mantiene coherencia)
       if ((window.__getTheme ? window.__getTheme() : 'system') === 'system') setMode('system');
     };
     if (mql.addEventListener) mql.addEventListener('change', onScheme);
@@ -58,22 +62,30 @@ export default function NavBar() {
     const isActive = currentPath === href || (href === base && currentPath.endsWith("/index.html"));
     return isActive ? `${baseClasses} text-primary` : `${baseClasses} text-muted-foreground hover:text-foreground`;
   };
+  // El ciclo del botón solo alterna entre light y dark.
+  // Desde 'system' (carga inicial) elegimos el contrario al tema efectivo actual para que el icono "pida" el cambio natural.
+  const computeNextMode = (m, effectiveDark) => {
+    if (m === 'system') return effectiveDark ? 'light' : 'dark';
+    return m === 'light' ? 'dark' : 'light';
+  };
   const toggleTheme = () => {
-    const next = mode === 'light' ? 'dark' : mode === 'dark' ? 'system' : 'light';
+    const next = computeNextMode(mode, isDark);
     setMode(next);
     if (window.__setTheme) {
       window.__setTheme(next);
     } else {
-      // Fallback simple (sin animación)
-      if (next === 'dark') document.documentElement.classList.add('dark');
-      else if (next === 'light') document.documentElement.classList.remove('dark');
-      else {
+      // Fallback simple
+      if (next === 'dark') {
+        document.documentElement.classList.add('dark');
+      } else if (next === 'light') {
+        document.documentElement.classList.remove('dark');
+      } else {
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
         document.documentElement.classList.toggle('dark', prefersDark);
       }
     }
-    // Actualizar estado tras el set (ligero delay para asegurarnos de transición)
-    setTimeout(() => setIsDark(document.documentElement.classList.contains('dark')), 0);
+    // Sin esperar a observers externos, actualizamos el estado efectivo
+    setIsDark(next === 'dark');
   };
 
   return (
@@ -108,19 +120,21 @@ export default function NavBar() {
             <ChevronLeft className="h-6 w-6 text-muted-foreground" />
           </button>
           {/* Icono tema actual (clicable para cambiar) */}
-          <button
-            type="button"
-            onClick={toggleTheme}
-            className="absolute top-4 left-4 p-2 rounded-md hover:bg-accent"
-            aria-label="Cambiar tema"
-            title={`Tema: ${mode}`}
-          >
-            {isDark ? (
-              <Sun className="h-5 w-5 text-muted-foreground" />
-            ) : (
-              <Moon className="h-5 w-5 text-muted-foreground" />
-            )}
-          </button>
+          {(() => {
+            const nextMode = computeNextMode(mode, isDark);
+            const Icon = nextMode === 'light' ? Sun : Moon;
+            return (
+              <button
+                type="button"
+                onClick={toggleTheme}
+                className="absolute top-4 left-4 p-2 rounded-md hover:bg-accent"
+                aria-label={`Cambiar a modo ${nextMode}`}
+                title={`Cambiar a modo ${nextMode}`}
+              >
+                <Icon className="h-5 w-5 text-muted-foreground" />
+              </button>
+            );
+          })()}
           <div className="flex flex-col items-center justify-center gap-3 pt-2 pb-2">
             <Logo className="h-24 w-auto" />
             <span className="text-2xl font-semibold tracking-wide text-card-foreground">Esmaltamos tu Bañera</span>

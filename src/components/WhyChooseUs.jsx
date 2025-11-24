@@ -1,11 +1,17 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Award, PiggyBank, Sparkles } from 'lucide-react';
 
 export default function WhyChooseUs() {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   return (
     // Usamos un padding más generoso y centramos el contenido
-    <section className='py-16 md:py-24 px-4'>
-      <div className="container mx-auto text-left">
+    <section className='py-16 md:py-24 px-4 overflow-hidden'>
+      <div className={`container mx-auto text-left ${mounted ? 'slide-fade-enter' : 'slide-fade-before'}`}>
         <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
           Ventajas de esmaltar tu bañera
         </h2>

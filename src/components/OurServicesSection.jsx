@@ -70,7 +70,7 @@ export default function OurServicesSection() {
   };
 
   return (
-    <section className="bg-background text-foreground">
+    <section className="bg-background text-foreground pt-12">
       <div className="container mx-auto text-center px-4">
         <h2 className="text-4xl md:text-5xl font-bold tracking-tight">Nuestros Servicios</h2>
         <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">

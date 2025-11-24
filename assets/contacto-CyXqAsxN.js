@@ -1,1 +1,0 @@
-import{j as t,a as o,b as r,r as e,L as s}from"./Layout-ClDsB7ds.js";function n(){return t.jsx(o,{})}r.createRoot(document.getElementById("root")).render(t.jsx(e.StrictMode,{children:t.jsx(s,{children:t.jsx(n,{})})}));

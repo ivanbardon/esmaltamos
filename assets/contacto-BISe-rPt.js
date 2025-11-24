@@ -1,0 +1,1 @@
+import{j as t,a as s,b as e,r,L as o}from"./Layout-BVFyVBSh.js";function a(){return t.jsx("div",{className:"w-full h-40"})}function n(){return t.jsxs(t.Fragment,{children:[t.jsx("div",{className:"w-full h-20"}),t.jsx(s,{}),t.jsx(a,{})]})}e.createRoot(document.getElementById("root")).render(t.jsx(r.StrictMode,{children:t.jsx(o,{children:t.jsx(n,{})})}));
